@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Помогает разложить сумбурные мысли по полочкам и подготовиться к разговору с психологом. Анонимно, без регистрации.">
+  <meta name="theme-color" content="#F6F3EE">
+  <title>Текст по-человечески</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#input">Перейти к полю ввода</a>
+
+  <main class="page">
+    <header class="page__header">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true" focusable="false"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.5 15.5c0-3.6 2.9-6.5 6.5-6.5h4.5c3.6 0 6.5 2.9 6.5 6.5S19.1 22 15.5 22H11l-3.5 3.2c-.5.5-1.3.1-1.3-.6v-3.2a6.5 6.5 0 0 1-1.7-5.9Z"/>
+        <path d="M26 13h9.5M26 19h9.5M26 25h6"/>
+        <circle cx="22.5" cy="13" r="1.2" fill="currentColor" stroke="none"/>
+        <circle cx="22.5" cy="19" r="1.2" fill="currentColor" stroke="none"/>
+        <circle cx="22.5" cy="25" r="1.2" fill="currentColor" stroke="none"/>
+      </svg>
+      <h1 class="page__title">Текст по-человечески</h1>
+    </header>
+
+    <p class="page__subtitle">Разложите сумбурные мысли по полочкам за один шаг.</p>
+
+    <section class="disclaimer" aria-label="Важное уточнение">
+      <p>Это не терапия. Здесь можно разобрать мысли по полочкам и подготовиться к разговору с психологом. Диагнозы мы не ставим и не заменяем специалиста.</p>
+    </section>
+
+    <form class="form" id="form" novalidate>
+      <div class="field">
+        <label class="field__label" for="input">Ваша ситуация</label>
+        <textarea
+          id="input"
+          name="text"
+          class="field__input"
+          rows="6"
+          maxlength="5000"
+          placeholder="Опишите вашу ситуацию или вопрос так, как приходит в голову..."
+          aria-describedby="hint counter"
+        ></textarea>
+        <div class="limit-bar" aria-hidden="true">
+          <span class="limit-bar__fill" id="limitFill"></span>
+        </div>
+        <div class="field__meta">
+          <p class="field__hint" id="hint">Напишите хотя бы пару предложений — так выйдет лучше.</p>
+          <p class="field__counter" id="counter" aria-live="off">0 / 5000</p>
+        </div>
+      </div>
+
+      <figure class="empty-illustration" id="emptyIllustration" aria-hidden="true">
+        <svg viewBox="0 0 240 180" fill="none" focusable="false"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M34 62c0-3.3 2.7-6 6-6h58c3.3 0 6 2.7 6 6v82c0 2.2-1.8 4-4 4H40c-3.3 0-6-2.7-6-6V62Z"/>
+          <path d="M104 56h60c3.3 0 6 2.7 6 6v76c0 3.3-2.7 6-6 6h-60V56Z"/>
+          <path d="M104 56v88"/>
+          <path d="M112 56v88" stroke-opacity="0.35"/>
+          <path d="M46 76c8-4 14 5 22-1s13 3 20-2"/>
+          <path d="M46 90c10 5 16-6 26 0 7 4 10-3 16 1"/>
+          <path d="M46 104c7-5 12 4 19-1 5-4 9 2 14-1"/>
+          <path d="M46 118c9 3 14-4 21 1 4 3 8-1 12 0"/>
+          <path d="M120 100h16" stroke-opacity="0.45"/>
+          <path d="M132 95l5 5-5 5" stroke-opacity="0.45"/>
+          <path d="M146 78h14M146 92h14M146 106h14M146 120h9"/>
+          <circle cx="140" cy="78" r="1.6" fill="currentColor" stroke="none"/>
+          <circle cx="140" cy="92" r="1.6" fill="currentColor" stroke="none"/>
+          <circle cx="140" cy="106" r="1.6" fill="currentColor" stroke="none"/>
+          <circle cx="140" cy="120" r="1.6" fill="currentColor" stroke="none"/>
+        </svg>
+      </figure>
+
+      <button class="button button--primary" type="submit" id="submit" disabled>
+        <span class="button__spinner" id="spinner" hidden aria-hidden="true"></span>
+        <svg class="button__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"
+             stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 17c0-3 2.2-5 5-5h1c3 0 5.5-2 5.5-5"/>
+          <path d="M16 4l2.5 2.5L21 4"/>
+          <path d="M4 20h5M12 20h4M19 20h1"/>
+        </svg>
+        <span class="button__label" id="submitLabel">Структурировать мысли</span>
+      </button>
+    </form>
+
+    <div class="skeleton" id="skeleton" hidden aria-hidden="true">
+      <span class="skeleton__line"></span>
+      <span class="skeleton__line"></span>
+      <span class="skeleton__line skeleton__line--short"></span>
+    </div>
+
+    <div id="statusRegion" role="status" aria-live="polite" class="visually-hidden"></div>
+
+    <section class="card card--result" id="result" hidden aria-label="Структурированный текст">
+      <div class="card__body" id="resultBody"></div>
+      <div class="card__actions">
+        <button class="button button--copy" type="button" id="copy">
+          <svg class="button__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"
+               stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="11" height="11" rx="2.5"/>
+            <path d="M5 15H4.5A1.5 1.5 0 0 1 3 13.5V4.5A1.5 1.5 0 0 1 4.5 3h9A1.5 1.5 0 0 1 15 4.5V5"/>
+          </svg>
+          <span>Скопировать</span>
+        </button>
+        <button class="button button--secondary" type="button" id="reset">
+          <svg class="button__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"
+               stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 12a8 8 0 1 1-2.34-5.66"/>
+            <path d="M20 4v4h-4"/>
+          </svg>
+          <span>Начать заново</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="card card--warning" id="warning" hidden aria-labelledby="warningTitle">
+      <svg class="card__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"
+           stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 20.2s-7.2-4.4-7.2-9.4a4.1 4.1 0 0 1 7.2-2.7 4.1 4.1 0 0 1 7.2 2.7c0 5-7.2 9.4-7.2 9.4Z"/>
+        <path d="M9.4 12.4h1.8l1-1.6 1.2 2.8 1-1.2h1.8"/>
+      </svg>
+      <h2 id="warningTitle">Если совсем тяжело</h2>
+      <p>Похоже, тут тяжело и одному не разобраться. Это не страшно и не надолго — но с этим важно поговорить с живым человеком. Вот куда можно позвонить прямо сейчас, бесплатно и круглосуточно.</p>
+      <a class="button button--phone" href="tel:88002000122">
+        <svg class="button__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"
+             stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6.5 3.5h2l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v2a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5Z"/>
+        </svg>
+        <span>8-800-2000-122</span>
+      </a>
+    </section>
+
+    <section class="card card--error" id="error" hidden aria-labelledby="errorTitle" role="alert">
+      <svg class="card__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"
+           stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="8.6"/>
+        <path d="M9.6 9.7a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2-2.4 3.6"/>
+        <circle cx="12" cy="17.1" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+      <h2 id="errorTitle">Не получилось</h2>
+      <p id="errorText">Что-то пошло не так на нашей стороне. Ваш текст никуда не делся — попробуйте ещё раз.</p>
+      <div class="card__actions">
+        <button class="button button--copy" type="button" id="retry">
+          <svg class="button__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"
+               stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 12a8 8 0 1 1-2.34-5.66"/>
+            <path d="M20 4v4h-4"/>
+          </svg>
+          <span>Повторить</span>
+        </button>
+        <button class="button button--secondary" type="button" id="errorReset">
+          <svg class="button__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"
+               stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+          <span>Начать заново</span>
+        </button>
+      </div>
+    </section>
+
+    <footer class="page__footer">
+      <p class="footer-chip">
+        <svg class="footer-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"
+             stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="10" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        <span>Мы не сохраняем ваши тексты</span>
+      </p>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"
+         stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12.6 9.8 17.4 19 7.6"/>
+    </svg>
+    <span>Скопировали</span>
+  </div>
+
+  <script type="module" src="/static/js/app.js"></script>
+</body>
+</html>
